@@ -30,10 +30,9 @@ while True:
     
     lower_color = np.array([hue - tolerance, saturation - tolerance, value - tolerance])
     upper_color = np.array([hue + tolerance, saturation + tolerance, value + tolerance])
-    mask = cv2.inRange(hsv_image, lower_color, upper_color)
-
+   
     # สร้าง binary mask เพื่อแสดงส่วนของภาพที่มีสีน้ำเงินอยู่ในช่วงที่กำหนด
-    mask = cv2.inRange(hsv_cap, lower_blue, upper_blue) 
+    mask = cv2.inRange(hsv_cap, lower_color, upper_color) 
 
     # ค้นหาเส้นขอบ
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
