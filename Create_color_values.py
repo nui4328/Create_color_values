@@ -1,5 +1,5 @@
 import cv2
-
+import numpy as np
 def get_color(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         bgr_color = image[y, x]  # ค่าสี BGR ของจุดที่คลิก
@@ -7,7 +7,7 @@ def get_color(event, x, y, flags, param):
         print('BGR:', bgr_color)
         print('HSV:', hsv_color)
 
-image = cv2.imread('example.jpg')
+image = cv2.imread('img2_ex.jpg')
 cv2.namedWindow('image')
 cv2.setMouseCallback('image', get_color)
 
