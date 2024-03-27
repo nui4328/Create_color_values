@@ -20,11 +20,17 @@ while True:
         break
 
    # แปลงรูปเป็นระบบสี HSV
-    hsv_cap = cv2.cvtColor(cap, cv2.COLOR_BGR2HSV)
+    hsv_cap = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     # กำหนดช่วงของสีน้ำเงินในระบบสี HSV
-    lower_blue = np.array([90, 100, 100])  # ค่าสีน้ำเงินต่ำสุด (Hue, Saturation, Value)
-    upper_blue = np.array([130, 255, 255])  # ค่าสีน้ำเงินสูงสุด (Hue, Saturation, Value)
+    hue = 48
+    saturation = 152
+    value = 173
+    tolerance = 35  # ค่า tolerance สำหรับการตรวจจับสี
+    
+    lower_color = np.array([hue - tolerance, saturation - tolerance, value - tolerance])
+    upper_color = np.array([hue + tolerance, saturation + tolerance, value + tolerance])
+    mask = cv2.inRange(hsv_image, lower_color, upper_color)
 
     # สร้าง binary mask เพื่อแสดงส่วนของภาพที่มีสีน้ำเงินอยู่ในช่วงที่กำหนด
     mask = cv2.inRange(hsv_cap, lower_blue, upper_blue) 
